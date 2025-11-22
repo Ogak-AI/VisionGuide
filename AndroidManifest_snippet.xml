@@ -1,0 +1,8 @@
+<!-- Android manifest snippet for VisionGuide: Meta Horizon OS & Quest 3 passthrough -->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Required permissions -->
+    <uses-permission android:name="horizonos.permission.HEADSET_CAMERA" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <!-- Add other manifest entries into your final AndroidManifest.xml as needed. -->
+</manifest>

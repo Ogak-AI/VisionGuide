@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.yourcompany.visionguide">
+
+    <!-- Required permissions for Meta Horizon OS passthrough and camera access -->
+    <uses-permission android:name="horizonos.permission.HEADSET_CAMERA" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <application android:label="VisionGuide" android:icon="@mipmap/ic_launcher">
+        <activity android:name="com.facebook.react.ReactActivity"
+                  android:label="VisionGuide"
+                  android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+</manifest>

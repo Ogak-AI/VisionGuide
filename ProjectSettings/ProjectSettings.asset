@@ -1,0 +1,9 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!129 &1
+PlayerSettings:
+  companyName: YourCompany
+  productName: VisionGuide
+  applicationIdentifier: com.yourcompany.visionguide
+  defaultScreenWidth: 800
+  defaultScreenHeight: 600
