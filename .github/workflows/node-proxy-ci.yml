@@ -1,0 +1,42 @@
+name: Node proxy CI
+
+on:
+  push:
+    paths:
+      - 'react-native-app/server/**'
+  pull_request:
+    paths:
+      - 'react-native-app/server/**'
+
+jobs:
+  test-proxy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        working-directory: react-native-app/server
+        run: npm install
+
+      - name: Run proxy in background
+        working-directory: react-native-app/server
+        run: |
+          nohup node index.js > server.log 2>&1 &
+          sleep 1
+
+      - name: Smoke test /analyze endpoint
+        run: |
+          set -e
+          HTTP_CODE=$(curl -s -o /tmp/resp.json -w "%{http_code}" -X POST http://localhost:3000/analyze -H 'Content-Type: application/json' -d '{}' || true)
+          echo "HTTP_CODE=$HTTP_CODE"
+          cat /tmp/resp.json || true
+          if [ "$HTTP_CODE" != "400" ]; then
+            echo "Expected 400 for missing base64, got $HTTP_CODE";
+            exit 1;
+          fi

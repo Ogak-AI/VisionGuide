@@ -1,0 +1,2 @@
+# Ignore env files for local servers
+/react-native-app/server/.env
